@@ -2,6 +2,19 @@
 
 Under construction
 
+Add the following to your `config.toml`:
+```
+[params.staticman]
+  endpoint = "https://staticman.domain.ch/v3/entry/gitlab"
+  username = "serviceaccount"
+  repository = "some-repository"
+  branch = "master"
+
+[module]
+  [[module.imports]]
+    path = "github.com/lbischof/hugo-staticman"
+```
+
 ## Comments
 
 **Partials**
