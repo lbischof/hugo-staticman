@@ -1,0 +1,19 @@
+{{ if $.Site.Data.comments }}
+  {{ $comments := index $.Site.Data.comments (.File.ContentBaseName) }}
+
+  {{ if $comments }}
+    {{ $comments := index $.Site.Data.comments (.File.ContentBaseName) }}
+    <span class="counter">
+      {{ len $comments }}
+    </span>
+    <span class="label">
+      {{ cond (gt $comments 1) "Kommentare" "Kommentar" }}
+    </span>
+  {{ else }}
+    <span class="counter">0</span>
+    <span class="label">Kommentare</span>
+  {{ end }}
+{{ else }}
+  <span class="counter">0</span>
+  <span class="label">Kommentare</span>
+{{ end }}

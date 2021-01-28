@@ -1,0 +1,104 @@
+.comments {
+  .comment-thread blockquote * {
+    font-size: 1.4rem!important;
+    line-height: 2rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+  }
+  figure {
+    margin: 0;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .comment-header {
+    margin: 1rem 0;
+  }
+  .comment-thread {
+    margin: 1rem 0 1rem 2rem;
+  }
+  p.comment-info {
+    margin: 0;
+  }
+  blockquote {
+    margin: 0;
+  }
+  .comment-reply-button input {
+    display: inline;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    border: none;
+    color: #1E5A96;
+    text-decoration: underline;
+  }
+}
+
+.comment-form {
+  margin: 2rem;
+  form {
+    transition: opacity .2s linear;
+  }
+  form.loading {
+    opacity: 0.6;
+  }
+  fieldset {
+    padding: 0;
+    border: none;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-family: Roboto, sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    padding: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    background: #e9e9e9;
+    margin: 0.25rem 0;
+    &:focus,
+    &:active {
+      background: #d6d6d6;
+    }
+  }
+
+  input[type="submit"],
+  input[type="reset"] {
+    padding: 0.75rem 3rem;
+    text-transform: uppercase;
+    border: none;
+    transition: 0.5s background ease-in-out;
+    cursor: pointer;
+  }
+  input[type="submit"] {
+    background: #1E5A96;
+    color: #fff;
+    &:hover {
+      background: darken(#1E5A96, 10%);
+    }
+  }
+  input[type="reset"] {
+    background: #fff;
+    color: #1E5A96;
+    &:hover {
+      background: darken(#fff, 10%);
+    }
+  }
+  .comment-success .success-message {
+    display: block;
+  }
+  .comment-error .error-message {
+    display: block;
+  }
+  .success-message {
+    color: #61B54C;
+    display: none;
+  }
+  .error-message {
+    color: #8D3838;
+    display: none;
+  }
+}
