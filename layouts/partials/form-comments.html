@@ -1,0 +1,71 @@
+
+<div class="comment-form">
+  <div class="success-message">
+    <h3>Vielen Dank</h3>
+    <p>Dein Kommentar wird in den nächsten Minuten publiziert.</p>
+    {{ if (.Site.Params.githubPullURL) }}
+      <p><a href="https://github.com/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/pulls">Click here</a> to see the pull request you generated.</p>
+    {{ end }}
+  </div>
+  
+  <div class="error-message">
+    <h3>OOPS!</h3>
+    <p>Dein Kommentar konnte nicht gespeichert werden. Bitte versuche es nochmal. Vielen Dank!</p>
+  </div>
+
+  <h3 class="comment-form-header">Kommentieren</h3>
+  <form method="POST" action="{{ .Site.Params.staticman.endpoint }}/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/{{ .Site.Params.staticman.branch }}/comments_{{ .Site.Params.staticman.branch }}">
+    <input type="hidden" name="options[slug]" value="{{ .File.ContentBaseName  }}">
+    <input type="hidden" name="options[parent]" value="{{ .File.ContentBaseName }}">
+    <input type="address" name="fields[botpot]" placeholder="botpot (do not fill!)" style="display:none">
+    {{ if isset .Site.Params.staticman "recaptcha" }}
+    <input type="hidden" name="options[reCaptcha][siteKey]" value="{{ .Site.Params.recaptcha.siteKey }}">
+    <input type="hidden" name="options[reCaptcha][secret]" value="{{ .Site.Params.recaptcha.secret }}">
+    {{ end }}
+
+    <fieldset>
+      <input class="username" name="fields[name]" type="text" placeholder="Dein Name">
+    </fieldset>
+
+    <fieldset>
+      <input class="email" name="fields[email]" type="email" placeholder="Deine E-Mail Adresse">
+    </fieldset>
+
+    <fieldset>
+      <textarea name="fields[body]" placeholder="Du kannst Markdown eingeben" rows="10"></textarea>
+    </fieldset>
+
+    {{ if .Site.Params.staticman.notifications }}
+    <fieldset>
+      <div>
+        <input type="checkbox" name="options[subscribe]" value="email">
+        Schick mir eine Benachrichtigung wenn jemand auf meinen Kommentar antwortet.
+      </div>
+    </fieldset>
+    {{ end }}
+
+    <fieldset>
+      {{ if isset .Site.Params.staticman "recaptcha" }}
+      <div class="g-recaptcha" data-sitekey="{{ .Site.Params.recaptcha.siteKey }}" data-callback="enableBtn"></div>
+      {{ end }}
+
+      <input type="submit" value="Kommentieren" id="submit-button" class="right">
+      <input type="reset" value="Zurücksetzen" class="right">
+    </fieldset>
+
+  </form>
+</div>
+
+{{ if isset .Site.Params.staticman "recaptcha" }}
+<script async src='https://www.google.com/recaptcha/api.js' ></script>
+
+<script type="text/javascript">
+  document.getElementById("submit-button").disabled = true;
+</script>
+
+<script type="text/javascript">
+  function enableBtn(){
+    document.getElementById("submit-button").disabled = false;
+  }
+</script>
+{{ end }}
